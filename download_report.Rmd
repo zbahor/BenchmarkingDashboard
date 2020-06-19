@@ -1,0 +1,31 @@
+---
+#title: "Benchmarking Report"
+#author: "CAMARADES"
+date: "Report created on `r Sys.Date()`"
+output: html_document
+---
+<br> </br>
+<center>![](www/CAMARADES_banner.jpg)</center>
+
+##<span style="color: #090E76; font-weight: bold;">Preliminary benchmarking of `University of Edinburgh` *in vivo* research</span>
+*Report created on `r Sys.Date()`*
+
+We present some preliminary benchmarking of `University of Edinburgh` in vivo research against two draft standards. The methodologies used continue to be refined, and the performance reported is based on our best estimates, using the text mining and automation processes as described. 
+
+**<span style="color:#094E76;">1. Proportion of animal research, which is identifiable in PubMed Central as free full text</span>**
+
+The anomymised performance of all LERU institutions over the years `2011`-`2018` is shown in Figure 1; the average performance is the bold black line, and the `Edinburgh` performance is the bold blue line. The ranked anonymised performance of all LERU institutions in `2018` is shown in Figure 2, with the performance of Edinburgh given in blue.
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+**<span style="color:#094E76;">2. Proportion of in vivo research which reports whether or not the experiment was blinded.</span>**
+
+We used linear regression to describe any change in reporting over the 8 year period; and Clopper-Pearson 95% confidence intervals we calculated in R.
+
+
+The change in reporting over time for `University of Edinburgh` is shown in Figure 3, with the anonymised performance of all
+LERU institutions in 2018, and the improvement over time, shown in Figures 4 and 5 respectively. The performance of Edinburgh is given in blue.
+
+This is a report downloaded from  <http://rstudio.io/benchmarkingtool>. For further information on the methdology used to create these calculations and visualisations please refer back to the app. For further information on the data behind this app please contact malcolm.macleod@ed.ac.uk.
