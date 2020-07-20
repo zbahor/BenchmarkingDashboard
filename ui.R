@@ -56,16 +56,40 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
 #########################################################
               
     tabPanel(title = "PubMed Central Data", icon = icon("lock-open"),
-             mainPanel(width=12,style="margin-left:4%; margin-right:4%",
-                       "Hello World")
              
+             mainPanel(width=12,style="margin-left:4%; margin-right:4%",
+                       "Test"
+ 
+                   
+             ) # mainpanel bracket
              
          ), # end of tab
+
+########################################################
+#Risk of Bias Graphs
+#########################################################
     
-    tabPanel(title="Risk of Bias Reporting", icon=icon("exclamation-circle")
-             
-             
-         ), #end of tab
+    tabPanel(title="Risk of Bias Reporting", icon=icon("exclamation-circle"),
+            mainPanel(width=12,style="margin-left:4%; margin-right:4%",
+                      
+                      fluidRow(column(7,p(h3("Prevalence of Reporting of Risk of Bias in Publications"),
+                                          br(),
+                                          h5("Select institution to filter data by")),
+                                      pickerInput(inputId= "rob_picker",  label = NULL,
+                                                  choices = rob_list, multiple=TRUE, options=list(title = "Please select one or more items")),
+                                      pickerInput(inputId= "institution_picker",  label = NULL,
+                                                  choices = institutions_list, multiple=FALSE, 
+                                                  options = list(title = "Please select an institution")),
+                                      checkboxGroupButtons(
+                                        inputId = "measure_picker",
+                                        label = "Choose measure to view", 
+                                        choices = c("Absolute measure", "Percentage of total"), selected="Percentage of total"),
+                                      plotlyOutput("rob_plot",width = "100%", height = "400px")
+                     
+                      
+                      ))   ) #mainPanel bracket
+           
+                    ), #end of tab
     
     tabPanel(title="Report Download", icon=icon("save")
              

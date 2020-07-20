@@ -4,7 +4,15 @@
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-   
+  
+
+#rob_filter <- reactive({
+                
+#})
+  
+output$rob_plot <- renderPlotly({
+ plot_ly(robdata,x=~Year,y=~Randomised_percentage,type = 'scatter', mode = 'lines')
+})
   # output$distPlot <- renderPlot({
   #   
   #   # generate bins based on input$bins from ui.R
