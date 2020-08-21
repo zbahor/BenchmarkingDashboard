@@ -4,24 +4,19 @@
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  
 
-#rob_filter <- reactive({
-                
-#})
-  
-output$rob_plot <- renderPlotly({
- plot_ly(robdata,x=~Year,y=~Randomised_percentage,type = 'scatter', mode = 'lines')
+#ROB by Uni percentage graph output
+output$rob_plot_perc <- renderPlotly({
+  plot_ly(robdata[robdata$institution_clean == input$institution_picker,],x=~Year,y=~get(paste0(input$rob_picker,'_percentage')),type = 'scatter', mode = 'lines') %>%
+  layout(xaxis = list(title="Year of Publication",size = 16), yaxis = list(title=paste0("Percentage of studies reporting ",input$rob_picker),size=16))
 })
-  # output$distPlot <- renderPlot({
-  #   
-  #   # generate bins based on input$bins from ui.R
-  #   x    <- faithful[, 2] 
-  #   bins <- seq(min(x), max(x), length.out = input$bins + 1)
-  #   
-  #   # draw the histogram with the specified number of bins
-  #   hist(x, breaks = bins, col = 'darkgray', border = 'white')
-  #   
-  # })
+
+#ROB by Uni absolute value graph output
+output$rob_plot_abs <- renderPlotly({
+  plot_ly(robdata[robdata$institution_clean == input$institution_picker,],x=~Year,y=~input$rob_picker,type = 'scatter', mode = 'lines')
+})
+
+output$value3 <- renderPrint({input$measurepicker})
   
 })
+

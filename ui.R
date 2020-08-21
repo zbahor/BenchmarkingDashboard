@@ -72,24 +72,45 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
     tabPanel(title="Risk of Bias Reporting", icon=icon("exclamation-circle"),
             mainPanel(width=12,style="margin-left:4%; margin-right:4%",
                       
-                      fluidRow(column(7,p(h3("Prevalence of Reporting of Risk of Bias in Publications"),
+                      fluidRow(column(4,
+                                      p(h3("Prevalence of Reporting of Risk of Bias in Publications"),
                                           br(),
                                           h5("Select institution to filter data by")),
                                       pickerInput(inputId= "rob_picker",  label = NULL,
-                                                  choices = rob_list, multiple=TRUE, options=list(title = "Please select one or more items")),
+                                                  choices = rob_list, multiple=TRUE, options=list(title = "Please select one or more items")))),
+                      fluidRow(column(3,
                                       pickerInput(inputId= "institution_picker",  label = NULL,
                                                   choices = institutions_list, multiple=FALSE, 
-                                                  options = list(title = "Please select an institution")),
-                                      checkboxGroupButtons(
+                                                  options = list(title = "Please select an institution"))
+
+                                       ), # column bracket
+                               column(3,
+                                      conditionalPanel(condition="input['institution_picker']!=''", 
+                                                actionBttn(inputId = "compare_unis",label="Compare to another institution",size="sm",style="simple",icon=icon("greater-than-equal")))
+                               ) # column bracket
+                                      ), #fluidRow bracket 
+                      fluidRow(column(3, 
+                                      radioGroupButtons(
                                         inputId = "measure_picker",
                                         label = "Choose measure to view", 
-                                        choices = c("Absolute measure", "Percentage of total"), selected="Percentage of total"),
-                                      plotlyOutput("rob_plot",width = "100%", height = "400px")
-                     
-                      
-                      ))   ) #mainPanel bracket
-           
-                    ), #end of tab
+                                        choices = c("Absolute measure"="abs", "Percentage of total"="perc"), selected="perc",
+                                      checkIcon = list(yes = icon("ok",lib = "glyphicon")))),
+                               column(3, offset=5,
+                                      br(), 
+                                      conditionalPanel(condition= "output.rob_plot != ''",
+                                              actionBttn(inputId= "add_to_download", label = "Add graph to download report",size="sm",style="simple",icon=icon("folder-plus")))
+                                      ) # column bracket
+                                ), #fluidRow bracket
+                      fluidRow(column(10,
+                                      verbatimTextOutput("value3"),
+                                     conditionalPanel(condition='input["measure_picker"]=="perc"',
+                                                      plotlyOutput("rob_plot_perc",width = "100%", height = "400px")),
+                                     conditionalPanel(condition='input["measure_picker"]=="abs"',
+                                                      plotlyOutput("rob_plot_abs",width = "100%", height = "400px"))
+                                     )   #column bracke
+                               ) #fluidrow bracket
+                      ) #mainPanel bracket
+             ), #end of tab
     
     tabPanel(title="Report Download", icon=icon("save")
              
