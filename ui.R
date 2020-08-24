@@ -77,10 +77,10 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
                                           br(),
                                           h5("Select institution to filter data by")),
                                       pickerInput(inputId= "rob_picker",  label = NULL,
-                                                  choices = rob_list, multiple=TRUE, options=list(title = "Please select one or more items")))),
+                                                  choices = rob_list, multiple=FALSE, options=list(title = "Please select one or more items")))),
                       fluidRow(column(3,
                                       pickerInput(inputId= "institution_picker",  label = NULL,
-                                                  choices = institutions_list, multiple=FALSE, 
+                                                  choices = institutions_list, multiple=TRUE, 
                                                   options = list(title = "Please select an institution"))
 
                                        ), # column bracket
@@ -102,8 +102,8 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
                                       ) # column bracket
                                 ), #fluidRow bracket
                       fluidRow(column(10,
-                                      verbatimTextOutput("value3"),
-                                     conditionalPanel(condition='input["measure_picker"]=="perc"',
+                                    verbatimTextOutput("errormessage"),
+                                      conditionalPanel(condition='input["measure_picker"]=="perc"',
                                                       plotlyOutput("rob_plot_perc",width = "100%", height = "400px")),
                                      conditionalPanel(condition='input["measure_picker"]=="abs"',
                                                       plotlyOutput("rob_plot_abs",width = "100%", height = "400px"))
