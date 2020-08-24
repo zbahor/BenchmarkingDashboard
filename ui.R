@@ -83,11 +83,11 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
                                                   choices = institutions_list, multiple=TRUE, 
                                                   options = list(title = "Please select an institution"))
 
-                                       ), # column bracket
-                               column(3,
-                                      conditionalPanel(condition="input['institution_picker']!=''", 
-                                                actionBttn(inputId = "compare_unis",label="Compare to another institution",size="sm",style="simple",icon=icon("greater-than-equal")))
-                               ) # column bracket
+                                       )#, # column bracket
+                              # column(3,
+                                  #    conditionalPanel(condition="input['institution_picker']!=''", 
+                                  #              actionBttn(inputId = "compare_unis",label="Compare to another institution",size="sm",style="simple",icon=icon("greater-than-equal")))
+                             #  ) # column bracket
                                       ), #fluidRow bracket 
                       fluidRow(column(3, 
                                       radioGroupButtons(
