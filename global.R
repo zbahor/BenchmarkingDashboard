@@ -25,6 +25,7 @@ robdata <- readRDS("data/calculated_summary_stats.rds") #main risk of bias decis
 ########################
 #list of institutions
 institutions_list <- unique(robdata$institution_clean)
+pubyear_list <- unique(robdata$Year)
 #list of risk of bias items
 rob_list2 <- c("Random Allocation of Animals to Group","Blinded assessment of outcome","Sample Size Calculation")
 rob_list <- setNames(object=c("Randomised","Blinded","SSC"), nm=rob_list2)

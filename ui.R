@@ -95,19 +95,25 @@ mainPanel(width=11, style="margin-left:4%, margin-right:4%",
                                         label = "Choose measure to view", 
                                         choices = c("Absolute measure"="abs", "Percentage of total"="perc"), selected="perc",
                                       checkIcon = list(yes = icon("ok",lib = "glyphicon")))),
-                               column(3, offset=5,
-                                      br(), 
-                                      conditionalPanel(condition= "output.rob_plot != ''",
-                                              actionBttn(inputId= "add_to_download", label = "Add graph to download report",size="sm",style="simple",icon=icon("folder-plus")))
+                               column(3, offset=3,
+                                      br(),
+                                      pickerInput(inputId= "year_picker",  label = "Choose year of publication to compare",
+                                                  choices = pubyear_list, multiple=FALSE, 
+                                                  selected = 2018)#, 
+                                     # conditionalPanel(condition= "output.rob_plot != ''",
+                                            #  actionBttn(inputId= "add_to_download", label = "Add graph to download report",size="sm",style="simple",icon=icon("folder-plus")))
                                       ) # column bracket
                                 ), #fluidRow bracket
-                      fluidRow(column(10,
-                                    verbatimTextOutput("errormessage"),
+                      fluidRow(column(6,
+                                    #verbatimTextOutput("errormessage"),
                                       conditionalPanel(condition='input["measure_picker"]=="perc"',
                                                       plotlyOutput("rob_plot_perc",width = "100%", height = "400px")),
                                      conditionalPanel(condition='input["measure_picker"]=="abs"',
                                                       plotlyOutput("rob_plot_abs",width = "100%", height = "400px"))
-                                     )   #column bracke
+                                     ),   #column bracket
+                               column(6,
+                                      plotlyOutput("institution_bargraph",width = "100%", height = "400px")
+                                      ) # column bracket
                                ) #fluidrow bracket
                       ) #mainPanel bracket
              ), #end of tab
